@@ -10,41 +10,17 @@ namespace Core.Entities
 {
     public class DaTable : EntityObject
     {
-        public string TableName { get; set; } = String.Empty;
-        
         [Required]
         public string QRCode { get; set; } = String.Empty;
 
-        [ForeignKey("Person_Id")]
-        public Person Person { get; set; } = new Person();
-        public int Person_Id { get; set; } = 0;
+        [Required]
+        public int TableNumber { get; set; }
 
+        public bool IsBooked { get; set; }
 
-        public DaTable()
-        {
-        }
+        //[ForeignKey("Person_Id")]
+        //public Person Person { get; set; } = new Person();
+        //public int Person_Id { get; set; } = 0;
 
-        public DaTable(string tableName, string qRCode, Person person, int person_Id)
-        {
-            TableName = tableName;
-            QRCode = qRCode;
-            Person = person;
-            Person_Id = person_Id;
-        }
-
-        public override bool Equals(object? obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        public override string? ToString()
-        {
-            return base.ToString();
-        }
     }
 }

@@ -28,7 +28,11 @@ namespace Persistence
 
         public async Task<Person?> GetPersonByNameAsync(string firstName, string lastName)
         {
-            return await _dbContext.Persons.SingleOrDefaultAsync(p => p.FirstName.ToUpper() == firstName.ToUpper() && p.LastName.ToUpper() == lastName.ToUpper());
+            return await _dbContext
+                .Persons
+                .SingleOrDefaultAsync(p => 
+                    p.FirstName.ToUpper() == firstName.ToUpper() 
+                    && p.LastName.ToUpper() == lastName.ToUpper());
         }
 
         public async Task InsertAsync(Person newPerson)

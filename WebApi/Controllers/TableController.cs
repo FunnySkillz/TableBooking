@@ -19,9 +19,9 @@ namespace WebApi.Controllers
 
         [ProducesResponseType(typeof(IEnumerable<DaTable>),StatusCodes.Status200OK)]
         [HttpGet]
-        public async Task<IActionResult> Get(int? person_id)
+        public async Task<IActionResult> Get()
         {
-            return Ok(await _unitOfWork.TableRepository.GetAllAsync(person_id));
+            return Ok(await _unitOfWork.TableRepository.GetAllAsync());
         }
     }
 }

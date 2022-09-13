@@ -99,7 +99,7 @@ static async Task AddNewTable()
 {
     string firstName;
     string lastName;
-    string tableName;
+    int tableNumber;
     string qrCode;
 
     Person? person;
@@ -121,14 +121,13 @@ static async Task AddNewTable()
             return;
         }
         Console.Write("Tisch name: ");
-        tableName = Convert.ToString(Console.ReadLine()!);
+        tableNumber = Convert.ToInt32(Console.ReadLine()!);
         Console.Write("QRCode: ");
         qrCode = Convert.ToString(Console.ReadLine()!);
 
         newTable = new DaTable()
         {
-            Person = person,
-            TableName = tableName,
+            TableNumber = tableNumber,
             QRCode = qrCode
         };
 
@@ -189,11 +188,12 @@ static async Task PrintAllTablesByPerson()
     {
         Console.WriteLine("\nLäufe von :" + firstName + " " + lastName);
         Console.WriteLine("{0,-10} {1,10} {2,10}", "Name", "QRCode");
-        var tables = await uow.TableRepository.GetTablesByPersonNameAsync(firstName, lastName);
-        foreach (var tab in tables)
-        {
-            Console.WriteLine("{0,-10} {1,10} ", tab.TableName, tab.QRCode);
-        }
+        //var tables = await uow.TableRepository.GetTablesByPersonNameAsync(firstName, lastName);
+
+        //foreach (var tab in tables)
+        //{
+        //    Console.WriteLine("{0,-10} {1,10} ", tab.TableName, tab.QRCode);
+        //}
     }
 }
 
@@ -208,10 +208,10 @@ static async Task PrintAllTables()
     {
         Console.WriteLine("\nAlle Tische:");
         Console.WriteLine("{0,-10} {1,10} {2,10} {3,10}", "QRCode","TableName", "Vorname", "Nachname");
-        var tables = await uow.TableRepository.GetAll();
+        var tables = await uow.TableRepository.GetAllAsync();
         foreach (var tab in tables)
         {
-            Console.WriteLine("{0,-10} {1,10} {2,10} {3, -15} {4,-15} ", tab.QRCode, tab.TableName, tab.Person!.FirstName, tab.Person.LastName);
+            Console.WriteLine("{0,-10} {1,10} {2,10} {3, -15} ", tab.QRCode, tab.TableNumber);
         }
     }
 }

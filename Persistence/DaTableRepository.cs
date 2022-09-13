@@ -2,6 +2,7 @@
 using Core.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Core.Entities;
+using Core.Validations;
 
 namespace Persistence
 {
@@ -24,22 +25,9 @@ namespace Persistence
             return await _dbContext.Tables.CountAsync();
         }
 
-        public async Task<List<DaTable>> GetAllAsync(int? person_id)
+        public async Task<List<DaTable>> GetAllAsync()
         {
-            return await _dbContext.Tables.AsNoTracking<DaTable>().Where(r => !person_id.HasValue || r.Person_Id == person_id).OrderBy(r => r.TableName).ToListAsync();
+            return await _dbContext.Tables.OrderBy(tt => tt.TableNumber).ToListAsync();
         }
-
-        public async Task<List<DaTable>> GetAll()
-        {
-            return await _dbContext.Tables.OrderBy(tt => tt.TableName).ToListAsync();
-        }
-
-        public async Task<List<DaTable>> GetTablesByPersonNameAsync(string firstName, string lastName)
-        {
-            return await _dbContext.Tables.Where(r => r.Person!.FirstName.ToUpper() == firstName.ToUpper() && r.Person.LastName.ToUpper() == lastName.ToUpper())
-                .OrderBy(r => r.TableName).ThenBy(r => r.QRCode).ToListAsync();
-        }
-
-
     }
 }

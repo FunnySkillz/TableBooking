@@ -14,14 +14,15 @@ namespace Persistence
 
         public IDaTableRepository TableRepository { get; }
         public IPersonRepository PersonRepository { get; }
+        public IBookingRepository BookingRepository { get; }
 
         public UnitOfWork()
         {
             _dbContext = new ApplicationDbContext();
             TableRepository = new DaTableRepository(_dbContext);
             PersonRepository = new PersonRepository(_dbContext);
+            BookingRepository = new BookingsRepository(_dbContext);
         }
-
 
         public async Task<int> SaveChangesAsync()
         {
@@ -88,24 +89,46 @@ namespace Persistence
 
             List<Person> persons;
             List<DaTable> tables;
+            List<Booking> bookings;
 
             string[][] csvFile = await MyFile.ReadStringMatrixFromCsvAsync(FILENAME, true);
-
-            persons = csvFile.GroupBy(line => new { firstName = line[0], lastName = line[1] }).Select(grp =>
-                new Person
-                {
-                    FirstName = grp.Key.firstName,
-                    LastName = grp.Key.lastName
-                }).ToList();
 
             tables = csvFile.Select(line =>
                 new DaTable()
                 {
-                    Person = persons.Where(t => t.FirstName.Equals(line[0]) && t.LastName.Equals(line[1])).SingleOrDefault(),
-                    TableName = Convert.ToString(line[2]),
-                    QRCode = Convert.ToString(line[3]),
+                    TableNumber = Convert.ToInt32(line[4]),
+                    QRCode = Convert.ToString(line[5]),
                 }).ToList();
 
+            persons = csvFile.Select(line =>
+                new Person
+                {
+                    LastName = Convert.ToString(line[0]),
+                    FirstName = Convert.ToString(line[1]),
+                    PhoneNumber = Convert.ToString(line[2]),
+                    Email = Convert.ToString(line[3]),
+                    Table = tables.Where(t => t.TableNumber.Equals(line[4]) && t.QRCode.Equals(line[5])).SingleOrDefault()
+                }).ToList();
+
+            bookings = csvFile.Select(line => 
+                new Booking() 
+                { 
+                    Person = persons
+                                .Where(p => 
+                                    p.LastName.Equals(line[0]) 
+                                    && p.FirstName.Equals(line[1]) 
+                                    && p.PhoneNumber.Equals(line[2]))
+                                .SingleOrDefault(),
+                    
+                    Table = tables
+                                .Where(t =>
+                                    t.TableNumber.Equals(line[4])
+                                    && t.QRCode.Equals(line[5]))
+                                .SingleOrDefault(),
+                    
+                }).ToList();
+
+            await _dbContext.Bookings.AddRangeAsync(bookings);
             await _dbContext.Persons.AddRangeAsync(persons);
             await _dbContext.Tables.AddRangeAsync(tables);
 

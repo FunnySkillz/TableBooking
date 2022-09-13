@@ -10,6 +10,7 @@ namespace Persistence
     {
         public DbSet<Person> Persons  => Set<Person>();
         public DbSet<DaTable> Tables => Set<DaTable>();
+        public DbSet<Booking> Bookings => Set<Booking>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

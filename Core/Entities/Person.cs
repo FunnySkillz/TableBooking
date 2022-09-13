@@ -16,15 +16,16 @@ namespace Core.Entities
         [Display(Name = "Nachname"), Required(ErrorMessage = "Nachname muss eingegeben werden"), ValidLastName]
         public string LastName { get; set; } = String.Empty;
 
+        // TODO: Nummer überprüfen
         [Display(Name = "Handy Nummer")]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; } = String.Empty;
 
-        //TODO: Validierung
+        //TODO: Emails validieren...
         [Required]
         public string Email { get; set; } = String.Empty;
-        
-        //[ForeignKey("DaTable_Id")]
-        //public DaTable DaTable { get; set; } = new DaTable();
-        //public int DaTable_Id { get; set; } = 0;
+
+        [ForeignKey("Table_Id")]
+        public DaTable Table { get; set; } = new DaTable();
+        public int Table_Id { get; set; } = 0;
     }
 }
