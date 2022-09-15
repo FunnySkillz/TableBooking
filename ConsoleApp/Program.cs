@@ -1,5 +1,7 @@
 ﻿using Core.Entities;
+using Core.Validations;
 using Persistence;
+using QRCoder;
 using System.ComponentModel.DataAnnotations;
 
 int selection;
@@ -54,15 +56,16 @@ static async Task AddNewPerson()
     string firstName;
     string lastName;
     string email;
+
     Console.Write("Vornamen eingeben: ");
     firstName = Console.ReadLine()!;
     Console.Write("Nachname eingeben: ");
     lastName = Console.ReadLine()!;
     Console.Write("Email eingeben: ");
     email = Console.ReadLine()!;
-
-
+    
     Person newPerson = new Person() { FirstName = firstName, LastName = lastName, Email = email };
+
 
     List<ValidationResult> valResults = new List<ValidationResult>();
     if (!Validator.TryValidateObject(newPerson, new ValidationContext(newPerson), valResults, true))
@@ -75,9 +78,13 @@ static async Task AddNewPerson()
         return;
     }
 
+    DaTable newT = new DaTable() { TableNumber = 12, QRCode = firstName+12+lastName+"QRx" };
+    Booking newBooking = new Booking() { Person = newPerson, Table = newT };
+    
     using (UnitOfWork uow = new UnitOfWork())
     {
         await uow.PersonRepository.InsertAsync(newPerson);
+        await uow.BookingRepository.InsertAsync(newBooking);
 
         try
         {
@@ -97,35 +104,17 @@ static async Task AddNewPerson()
 /// </summary>
 static async Task AddNewTable()
 {
-    string firstName;
-    string lastName;
     int tableNumber;
     string qrCode;
-
-    Person? person;
     DaTable newTable;
 
-    Console.Write("Vorname: ");
-    firstName = Console.ReadLine()!;
-    Console.Write("Nachname: ");
-    lastName = Console.ReadLine()!;
-
+    Console.Write("Nummer: ");
+    tableNumber = Convert.ToInt32(Console.ReadLine()!);
+    Console.Write("QRCode: ");
+    qrCode = Convert.ToString(Console.ReadLine()!);
 
     using (UnitOfWork uow = new UnitOfWork())
     {
-        //Prüfen ob die Person in der Datenbank existiert
-        person = await uow.PersonRepository.GetPersonByNameAsync(firstName, lastName);
-        if (person == null)
-        {
-            Console.WriteLine("\nPerson existiert nicht!");
-            return;
-        }
-
-        Console.Write("Tisch name: ");
-        tableNumber = Convert.ToInt32(Console.ReadLine()!);
-        Console.Write("QRCode: ");
-        qrCode = Convert.ToString(Console.ReadLine()!);
-
         newTable = new DaTable()
         {
             TableNumber = tableNumber,
@@ -164,6 +153,8 @@ static async Task PrintAllPersons()
     using (UnitOfWork uow = new UnitOfWork())
     {
         Console.WriteLine("\nPersonen:");
+        Console.WriteLine("===========");
+        Console.WriteLine("\n{0,-20} {1,-20}","Nachname", "Vorname");
         var persons = await uow.PersonRepository.GetAllOrderedByLastNameAsync();
         foreach (var person in persons)
         {
@@ -197,7 +188,6 @@ static async Task PrintAllTablesByPerson()
         }
     }
 }
-
 
 /// <summary>
 /// Alle Tische absteigend sortiert 

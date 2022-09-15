@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XU+QxB8roHZ3aEa69xWiHUQhn+KukI8bxMMMTppLJsQPDLPMDkx6eZ8yCDAS0wDXjjBUxB5nyNobcn4mMQqEqw==",
+  "dgSpecHash": "CFnsy0WgnYEBBSFSKgoQ5D08Bzg5NrCvziSyvq5hg2xUw/OGFqow4DUfT5yxJldu7Uftx6+qeL83pq7mI9N35w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sebastijan\\Desktop\\My Documents\\Arbeit\\projectBooking\\TableBooking\\ConsoleApp\\ConsoleApp.csproj",
   "expectedPackageFiles": [
@@ -36,6 +36,7 @@
     "C:\\Users\\Sebastijan\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Sebastijan\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Sebastijan\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Sebastijan\\.nuget\\packages\\qrcoder\\1.4.3\\qrcoder.1.4.3.nupkg.sha512",
     "C:\\Users\\Sebastijan\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Sebastijan\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\Sebastijan\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

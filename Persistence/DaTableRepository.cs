@@ -40,6 +40,5 @@ namespace Persistence
                 .Select(g => g.Key)
                 .ToListAsync();
         }
-
     }
 }

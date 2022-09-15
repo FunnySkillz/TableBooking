@@ -20,7 +20,7 @@ namespace Persistence
             _dbContext = dbContext;
         }
 
-        public Task DeleteAsync(Booking booking)
+        public async Task DeleteAsync(Booking booking)
         {
             throw new NotImplementedException();
         }
@@ -31,12 +31,13 @@ namespace Persistence
         }
 
 
-        public Task InsertAsync(Booking newBooking)
+        public async Task InsertAsync(Booking newBooking)
         {
-            throw new NotImplementedException();
+            await _dbContext.Bookings.AddAsync(newBooking);
         }
 
-        public Task UpdateAsync(Booking updateBooking)
+        // WRONG
+        public async Task UpdateAsync(Booking updateBooking)
         {
             throw new NotImplementedException();
         }

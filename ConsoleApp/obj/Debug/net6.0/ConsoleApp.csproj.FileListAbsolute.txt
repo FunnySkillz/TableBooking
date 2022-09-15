@@ -67,3 +67,4 @@ C:\Users\Sebastijan\Desktop\My Documents\Arbeit\projectBooking\TableBooking\Cons
 C:\Users\Sebastijan\Desktop\My Documents\Arbeit\projectBooking\TableBooking\ConsoleApp\obj\Debug\net6.0\ConsoleApp.pdb
 C:\Users\Sebastijan\Desktop\My Documents\Arbeit\projectBooking\TableBooking\ConsoleApp\obj\Debug\net6.0\ConsoleApp.genruntimeconfig.cache
 C:\Users\Sebastijan\Desktop\My Documents\Arbeit\projectBooking\TableBooking\ConsoleApp\obj\Debug\net6.0\ref\ConsoleApp.dll
+C:\Users\Sebastijan\Desktop\My Documents\Arbeit\projectBooking\TableBooking\ConsoleApp\bin\Debug\net6.0\QRCoder.dll
