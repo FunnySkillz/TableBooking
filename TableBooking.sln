@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{59578596-E64D-4C5C-81E2-B2D3FECBA469}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPP", "WebAPP\WebAPP.csproj", "{F31367F5-84B9-4547-9F2E-116DA42B23AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPP", "WebAPP\WebAPP.csproj", "{F31367F5-84B9-4547-9F2E-116DA42B23AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

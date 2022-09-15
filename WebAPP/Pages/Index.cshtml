@@ -36,7 +36,7 @@
     </style>
 </head>
 
-@*
+
 <div>
     <form method="post" asp-page="/Index">
         <div>
@@ -58,18 +58,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var food in Model.Persons)
+            @foreach (var pts in Model.PersonTableSummaries)
             {
                 <tr>
-                    <td>@food.NDBNumber</td>
-                    <td>@food.Description</td>
-                    <td>@food.DataType</td>
-                    <td>@food.PublishedDate</td>
-                    <td>
-                        <a asp-page="Foods/DetailsNutritient" asp-route-foodId="@food.Id">Details</a>
-                    </td>
+                    <td>@pts.LastName</td>
+                    <td>@pts.FirstName</td>
+                    <td>@pts.TableNumber</td>
+                    <td>@pts.QRCode</td>
                 </tr>
             }
         </tbody>
     </table>
-</div>*@
+</div>

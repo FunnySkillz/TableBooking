@@ -8,6 +8,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(_ => new UnitOfWork(builder.Configuration));
 
+builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 

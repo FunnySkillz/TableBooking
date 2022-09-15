@@ -119,6 +119,14 @@
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "System.Net.Http.Json": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Threading.Tasks": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [
@@ -225,6 +233,9 @@
               },
               "C:\\Users\\Sebastijan\\Desktop\\My Documents\\Arbeit\\projectBooking\\TableBooking\\Persistence\\Persistence.csproj": {
                 "projectPath": "C:\\Users\\Sebastijan\\Desktop\\My Documents\\Arbeit\\projectBooking\\TableBooking\\Persistence\\Persistence.csproj"
+              },
+              "C:\\Users\\Sebastijan\\Desktop\\My Documents\\Arbeit\\projectBooking\\TableBooking\\Utils\\Utils.csproj": {
+                "projectPath": "C:\\Users\\Sebastijan\\Desktop\\My Documents\\Arbeit\\projectBooking\\TableBooking\\Utils\\Utils.csproj"
               }
             }
           }
