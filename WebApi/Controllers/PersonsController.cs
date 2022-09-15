@@ -20,10 +20,18 @@ namespace WebApi.Controllers
         }
 
         [ProducesResponseType(typeof(IEnumerable<Person>), StatusCodes.Status200OK)]
-        [HttpGet("Person")]
-        public async Task<IActionResult> RunSummary()
+        [HttpGet("GetPersonOrderedByLastName")]
+        public async Task<IActionResult> GetAllOrderedByLastName()
         {
             return Ok(await _unitOfWork.PersonRepository.GetAllOrderedByLastNameAsync());
         }
+
+        [ProducesResponseType(typeof(IEnumerable<Person>), StatusCodes.Status200OK)]
+        [HttpGet("GetPersonByFirstLastName")]
+        public async Task<IActionResult> GetNutrientsByFoodId(string firstName, string lastName)
+        {
+            return Ok(await _unitOfWork.PersonRepository.GetPersonByNameAsync(firstName, lastName));
+        }
+
     }
 }

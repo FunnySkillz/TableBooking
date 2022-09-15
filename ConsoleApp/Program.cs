@@ -24,6 +24,9 @@ while ((selection = Menu()) != 0)
         case 5:
             await PrintAllTables();
             break;
+        case 6:
+            await PrintPersonTable();
+            break;
     }
 
     Console.WriteLine("\n<Taste drücken>");
@@ -39,6 +42,7 @@ static int Menu()
     Console.WriteLine("3.....Alle Personen ausgeben");
     Console.WriteLine("4.....Alle Tische zu einer Person ausgeben");
     Console.WriteLine("5.....Alle Tische ausgeben (nach Name)");
+    Console.WriteLine("6.....Person + Tische");
     Console.WriteLine("0.....ENDE");
     do
     {
@@ -47,6 +51,7 @@ static int Menu()
     } while (selection < 0 || selection > 6);
     return selection;
 }
+
 
 /// <summary>
 /// Person anlegen. Vor und Nachname werden eingegeben. Mit Validierung, sauber gemacht.
@@ -145,6 +150,7 @@ static async Task AddNewTable()
     }
 }
 
+
 /// <summary>
 /// Alle Personen ausgeben sortiert nach Nachname
 /// </summary>
@@ -207,3 +213,21 @@ static async Task PrintAllTables()
     }
 }
 
+/// <summary>
+/// Alle Personen und Tische ausgeben
+/// </summary>
+static async Task PrintPersonTable()
+{
+
+    using (UnitOfWork uow = new UnitOfWork())
+    {
+        Console.WriteLine("\nSummary");
+        Console.WriteLine("{0,-10} {1, 20} {2,20} {3,-20}", "LastName", "FirstName", "Table#", "QRCode");
+        var ptsDTO = await uow.BookingRepository.PersonTableSummaryAsync();
+
+        foreach (var pt in ptsDTO)
+        {
+            Console.WriteLine("{0,-10} {1, 20} {2,20} {3,-20}", pt.LastName,pt.FirstName,pt.TableNumber,pt.QRCode);
+        }
+    }
+}

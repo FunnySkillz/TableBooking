@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Core.Dtos;
+using Core.Entities;
 using Core.Validations;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace Core.Contracts
         Task InsertAsync(Booking newBooking);
         Task DeleteAsync(Booking booking);
         Task UpdateAsync(Booking updateBooking);
+        Task<List<PersonTableSummary>> PersonTableSummaryAsync();
     }
 }

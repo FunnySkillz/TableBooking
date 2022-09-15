@@ -1,4 +1,5 @@
 ﻿using Core.Contracts;
+using Core.Dtos;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -92,12 +93,12 @@ namespace Persistence
             await this.DeleteDatabaseAsync();
             await this.MigrateDatabaseAsync();
 
-
-            //Todo: Implementierung des Einlesens aus der csv-Datei runresults.csv und Perstierung in die Datenbank
+            //Todo: Implementierung des Einlesens aus der csv-Datei Booking.csv und Perstierung in die Datenbank
 
             List<Person> persons;
             List<DaTable> tables;
             List<Booking> bookings;
+            List<PersonTableSummary> personTableSummaries;
 
             string[][] csvFile = await MyFile.ReadStringMatrixFromCsvAsync(FILENAME, true);
 
@@ -138,7 +139,6 @@ namespace Persistence
             await _dbContext.Bookings.AddRangeAsync(bookings);
             await _dbContext.Persons.AddRangeAsync(persons);
             await _dbContext.Tables.AddRangeAsync(tables);
-
 
             await SaveChangesAsync();
         }

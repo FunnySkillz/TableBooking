@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Core.Dtos;
+using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -11,6 +12,7 @@ namespace Persistence
         public DbSet<Person> Persons  => Set<Person>();
         public DbSet<DaTable> Tables => Set<DaTable>();
         public DbSet<Booking> Bookings => Set<Booking>();
+
 
         IConfiguration _config;
         public IConfiguration Configuration { get { return _config; } }

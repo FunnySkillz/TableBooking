@@ -4,7 +4,72 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<head>
+    <style>
+        #SearchResult {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #SearchResult td, #SearchResult th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #SearchResult tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #SearchResult tr:hover {
+                background-color: #ddd;
+            }
+
+            #SearchResult th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;
+            }
+    </style>
+</head>
+
+
+<div>
+    <form method="post" asp-page="/Index">
+        <div>
+            <label asp-for="SearchPerson"></label>
+            <input asp-for="SearchPerson" type="text" class="form-control" />
+        </div>
+        <input class="btn btn-secondary" type="submit" value="Search" />
+    </form>
+</div>
+<br />
+<div>
+    <table id="SearchResult">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Table #</th>
+                <th>QRCode</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var food in Model.FoundationFoodItems)
+            {
+                <tr>
+                    <td>@food.NDBNumber</td>
+                    <td>@food.Description</td>
+                    <td>@food.DataType</td>
+                    <td>@food.PublishedDate</td>
+                    <td>
+                        <a asp-page="Foods/DetailsNutritient" asp-route-foodId="@food.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

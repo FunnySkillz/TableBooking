@@ -1,4 +1,5 @@
 ﻿using Core.Contracts;
+using Core.Dtos;
 using Core.Entities;
 using Core.Validations;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ namespace Persistence
             _dbContext = dbContext;
         }
 
-        public async Task DeleteAsync(Booking booking)
+        public Task DeleteAsync(Booking booking)
         {
             throw new NotImplementedException();
         }
@@ -37,18 +38,27 @@ namespace Persistence
         }
 
         // WRONG
-        public async Task UpdateAsync(Booking updateBooking)
+        public Task UpdateAsync(Booking updateBooking)
         {
             throw new NotImplementedException();
         }
 
-        //public async Task<List<Booking>> GetBookingsByPerson(string firstName, string lastName)
-        //{
-        //    return await _dbContext.Bookings
-        //        .Include(b => b.Table)
-        //        .Include(b => b.Person)
-        //        .Where(b=>b.Person.FirstName.Equals(firstName) && b.Person.LastName.Equals(lastName))
-        //        .ToListAsync();
-        //}
+        public async Task<List<PersonTableSummary>> PersonTableSummaryAsync()
+        {
+            return (await _dbContext.Bookings
+                .Include(b => b.Table)
+                .Include(b => b.Person)
+                .ToListAsync())
+                .Select(grp =>
+                    new PersonTableSummary()
+                    {
+                        FirstName = grp.Person!.FirstName,
+                        LastName = grp.Person.LastName,
+                        QRCode = grp.Table!.QRCode,
+                        TableNumber = grp.Table.TableNumber
+                    })
+                .OrderBy(r => r.LastName)
+                .ToList();
+        }
     }
 }
