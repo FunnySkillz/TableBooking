@@ -1,7 +1,13 @@
+using Core.Contracts;
+using Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(_ => new UnitOfWork(builder.Configuration));
+
 
 var app = builder.Build();
 

@@ -12,14 +12,27 @@ namespace Persistence
         public DbSet<DaTable> Tables => Set<DaTable>();
         public DbSet<Booking> Bookings => Set<Booking>();
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        IConfiguration _config;
+        public IConfiguration Configuration { get { return _config; } }
+
+        public ApplicationDbContext()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Environment.CurrentDirectory)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            var configuration = builder.Build();
-            Debug.Write(configuration.ToString());
-            string connectionString = configuration["ConnectionStrings:DefaultConnection"];
+                        .SetBasePath(Environment.CurrentDirectory).AddJsonFile
+                        ("appsettings.json", optional: true, reloadOnChange: true)
+                        .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json",
+                        optional: true, reloadOnChange: true);
+
+            _config = builder.Build();
+        }
+        public ApplicationDbContext(IConfiguration configuration) : base()
+        {
+            _config = configuration;
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+
+            string connectionString = _config["ConnectionStrings:DefaultConnection"];
             optionsBuilder.UseSqlServer(connectionString);
 
         }

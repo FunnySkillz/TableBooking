@@ -1,6 +1,7 @@
 ﻿using Core.Contracts;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.ComponentModel.DataAnnotations;
 using Utils;
 
@@ -16,13 +17,20 @@ namespace Persistence
         public IPersonRepository PersonRepository { get; }
         public IBookingRepository BookingRepository { get; }
 
-        public UnitOfWork()
+        public UnitOfWork() : this(new ApplicationDbContext())
+        { }
+
+        private UnitOfWork(ApplicationDbContext context)
         {
             _dbContext = new ApplicationDbContext();
+
             TableRepository = new DaTableRepository(_dbContext);
             PersonRepository = new PersonRepository(_dbContext);
             BookingRepository = new BookingsRepository(_dbContext);
         }
+
+        public UnitOfWork(IConfiguration configuration) : this(new ApplicationDbContext(configuration))
+        { }
 
         public async Task<int> SaveChangesAsync()
         {
