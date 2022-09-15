@@ -1,15 +1,3 @@
-C:\Users\Sebastijan\Desktop\Runner\Core\bin\Debug\net6.0\Core.deps.json
-C:\Users\Sebastijan\Desktop\Runner\Core\bin\Debug\net6.0\Core.dll
-C:\Users\Sebastijan\Desktop\Runner\Core\bin\Debug\net6.0\Core.pdb
-C:\Users\Sebastijan\Desktop\Runner\Core\obj\Debug\net6.0\Core.csproj.AssemblyReference.cache
-C:\Users\Sebastijan\Desktop\Runner\Core\obj\Debug\net6.0\Core.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Sebastijan\Desktop\Runner\Core\obj\Debug\net6.0\Core.AssemblyInfoInputs.cache
-C:\Users\Sebastijan\Desktop\Runner\Core\obj\Debug\net6.0\Core.AssemblyInfo.cs
-C:\Users\Sebastijan\Desktop\Runner\Core\obj\Debug\net6.0\Core.csproj.CoreCompileInputs.cache
-C:\Users\Sebastijan\Desktop\Runner\Core\obj\Debug\net6.0\Core.dll
-C:\Users\Sebastijan\Desktop\Runner\Core\obj\Debug\net6.0\refint\Core.dll
-C:\Users\Sebastijan\Desktop\Runner\Core\obj\Debug\net6.0\Core.pdb
-C:\Users\Sebastijan\Desktop\Runner\Core\obj\Debug\net6.0\ref\Core.dll
 C:\Users\Sebastijan\Desktop\My Documents\Arbeit\projectBooking\TableBooking\Core\bin\Debug\net6.0\Core.deps.json
 C:\Users\Sebastijan\Desktop\My Documents\Arbeit\projectBooking\TableBooking\Core\bin\Debug\net6.0\Core.dll
 C:\Users\Sebastijan\Desktop\My Documents\Arbeit\projectBooking\TableBooking\Core\bin\Debug\net6.0\Core.pdb

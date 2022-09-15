@@ -24,6 +24,7 @@ while ((selection = Menu()) != 0)
             break;
 
     }
+
     Console.WriteLine("\n<Taste drücken>");
     Console.ReadKey();
 }
