@@ -30,6 +30,13 @@ namespace Persistence
             return await _dbContext.Tables.OrderBy(tt => tt.TableNumber).ToListAsync();
         }
 
+        /// <summary>
+        /// Input. First and last name
+        /// will get all tables booked - matching the input.
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <returns></returns>
         public async Task<List<DaTable?>> GetTablesByPerson(string firstName, string lastName)
         {
             return (await _dbContext.Bookings
