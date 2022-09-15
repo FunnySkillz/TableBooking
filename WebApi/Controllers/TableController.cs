@@ -25,10 +25,10 @@ namespace WebApi.Controllers
         }
 
         [ProducesResponseType(typeof(IEnumerable<DaTable>), StatusCodes.Status200OK)]
-        [HttpPost("SearchForTablesBookedByPerson")]
-        public async Task<IActionResult> GetTablesBookedByPerson(string firstName, string lastName)
+        [HttpPost("PersonAndTableDTO")]
+        public async Task<IActionResult> GetTablesBookedByPerson()
         {
-            return Ok(await _unitOfWork.TableRepository.GetTablesByPerson(firstName, lastName));
+            return Ok(await _unitOfWork.BookingRepository.PersonTableSummaryAsync());
         }
     }
 }

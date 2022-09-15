@@ -5,6 +5,7 @@
 
         IDaTableRepository TableRepository { get; }
         IPersonRepository PersonRepository { get; }
+        IBookingRepository BookingRepository { get; }
 
         Task<int> SaveChangesAsync();
         Task DeleteDatabaseAsync();
