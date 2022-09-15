@@ -14,6 +14,5 @@ namespace Core.Contracts
         Task InsertAsync(Booking newBooking);
         Task DeleteAsync(Booking booking);
         Task UpdateAsync(Booking updateBooking);
-        Task<List<Table>> GetTablesByPerson(string firstName, string lastName);
     }
 }

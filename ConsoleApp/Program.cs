@@ -22,7 +22,6 @@ while ((selection = Menu()) != 0)
         case 5:
             await PrintAllTables();
             break;
-
     }
 
     Console.WriteLine("\n<Taste drücken>");
@@ -121,6 +120,7 @@ static async Task AddNewTable()
             Console.WriteLine("\nPerson existiert nicht!");
             return;
         }
+
         Console.Write("Tisch name: ");
         tableNumber = Convert.ToInt32(Console.ReadLine()!);
         Console.Write("QRCode: ");
@@ -187,14 +187,14 @@ static async Task PrintAllTablesByPerson()
 
     using (UnitOfWork uow = new UnitOfWork())
     {
-        Console.WriteLine("\nLäufe von :" + firstName + " " + lastName);
-        Console.WriteLine("{0,-10} {1,10} {2,10}", "Name", "QRCode");
-        //var tables = await uow.TableRepository.GetTablesByPersonNameAsync(firstName, lastName);
+        Console.WriteLine("\nTische von :" + firstName + " " + lastName);
+        Console.WriteLine("{0,-10} {1,10} ", "#", "QRCode");
+        var tables = await uow.TableRepository.GetTablesByPerson(firstName, lastName);
 
-        //foreach (var tab in tables)
-        //{
-        //    Console.WriteLine("{0,-10} {1,10} ", tab.TableName, tab.QRCode);
-        //}
+        foreach (var tab in tables)
+        {
+            Console.WriteLine("{0,-10} {1,10} ", tab.TableNumber, tab.QRCode);
+        }
     }
 }
 
@@ -204,15 +204,15 @@ static async Task PrintAllTablesByPerson()
 /// </summary>
 static async Task PrintAllTables()
 {
-
     using (UnitOfWork uow = new UnitOfWork())
     {
         Console.WriteLine("\nAlle Tische:");
-        Console.WriteLine("{0,-10} {1,10} {2,10} {3,10}", "QRCode","TableName", "Vorname", "Nachname");
+        Console.WriteLine("{0,-10} {1,10} ", "TableNumber", "QRCode");
         var tables = await uow.TableRepository.GetAllAsync();
+        
         foreach (var tab in tables)
         {
-            Console.WriteLine("{0,-10} {1,10} {2,10} {3, -15} ", tab.QRCode, tab.TableNumber);
+            Console.WriteLine("{0,-10} {1,10} ", tab.TableNumber, tab.QRCode);
         }
     }
 }

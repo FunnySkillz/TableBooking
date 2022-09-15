@@ -8,7 +8,6 @@ using (UnitOfWork uow = new())
     int cntPersons  = await uow.PersonRepository.CountAsync();
     int cntRuns = await uow.TableRepository.CountAsync();
 
-
     Console.WriteLine(cntPersons + " Kunden eingelesen!");
     Console.WriteLine(cntRuns + " Tische eingelesen!");
 }

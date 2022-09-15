@@ -29,5 +29,17 @@ namespace Persistence
         {
             return await _dbContext.Tables.OrderBy(tt => tt.TableNumber).ToListAsync();
         }
+
+        public async Task<List<DaTable>> GetTablesByPerson(string firstName, string lastName)
+        {
+            return await _dbContext.Bookings
+                .Include(b => b.Table)
+                .Include(b => b.Person)
+                .Where(b => b.Person.FirstName.Equals(firstName) && b.Person.LastName.Equals(lastName))
+                .GroupBy(b => b.Table)
+                .Select(g => g.Key)
+                .ToListAsync();
+        }
+
     }
 }

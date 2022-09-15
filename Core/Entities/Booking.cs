@@ -10,13 +10,13 @@ namespace Core.Entities
     public class Booking : EntityObject
     {
         [ForeignKey("Person_Id")]
-        public Person Person { get; set; } = new Person();
-        public int Person_Id { get; set; } = 0;
+        public Person? Person { get; set; }
+        public int? Person_Id { get; set; } = 0;
 
 
         [ForeignKey("Table_Id")]
-        public DaTable Table { get; set; } = new DaTable();
-        public int Table_Id { get; set; }
+        public DaTable? Table { get; set; }
+        public int? Table_Id { get; set; } = 0;
 
         public DateTime Date { get; set; }
 

@@ -107,7 +107,6 @@ namespace Persistence
                     FirstName = Convert.ToString(line[1]),
                     PhoneNumber = Convert.ToString(line[2]),
                     Email = Convert.ToString(line[3]),
-                    Table = tables.Where(t => t.TableNumber.Equals(line[4]) && t.QRCode.Equals(line[5])).SingleOrDefault()
                 }).ToList();
 
             bookings = csvFile.Select(line => 

@@ -10,5 +10,6 @@ namespace Core.Contracts
         Task AddAsync(DaTable newTable);
         Task<List<DaTable>> GetAllAsync();
 
+        Task<List<DaTable>> GetTablesByPerson(string firstName, string lastName);
     }
 }

@@ -30,6 +30,7 @@ namespace Persistence
             return await _dbContext.Bookings.CountAsync();
         }
 
+
         public Task InsertAsync(Booking newBooking)
         {
             throw new NotImplementedException();
@@ -40,9 +41,13 @@ namespace Persistence
             throw new NotImplementedException();
         }
 
-        public async Task<List<Table>> GetTablesByPerson(string firstName, string lastName)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<List<Booking>> GetBookingsByPerson(string firstName, string lastName)
+        //{
+        //    return await _dbContext.Bookings
+        //        .Include(b => b.Table)
+        //        .Include(b => b.Person)
+        //        .Where(b=>b.Person.FirstName.Equals(firstName) && b.Person.LastName.Equals(lastName))
+        //        .ToListAsync();
+        //}
     }
 }

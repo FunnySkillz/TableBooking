@@ -13,10 +13,11 @@ namespace Core.Entities
     {
         [Display(Name = "Vorname")]
         public string FirstName { get; set; } = String.Empty;
+
         [Display(Name = "Nachname"), Required(ErrorMessage = "Nachname muss eingegeben werden"), ValidLastName]
         public string LastName { get; set; } = String.Empty;
 
-        // TODO: Nummer überprüfen
+        // TODO: Nummer validieren
         [Display(Name = "Handy Nummer")]
         public string PhoneNumber { get; set; } = String.Empty;
 
@@ -24,8 +25,5 @@ namespace Core.Entities
         [Required]
         public string Email { get; set; } = String.Empty;
 
-        [ForeignKey("Table_Id")]
-        public DaTable Table { get; set; } = new DaTable();
-        public int Table_Id { get; set; } = 0;
     }
 }

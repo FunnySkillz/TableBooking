@@ -33,7 +33,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Person_Id")
+                    b.Property<int?>("Person_Id")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("RowVersion")
@@ -41,7 +41,7 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<int>("Table_Id")
+                    b.Property<int?>("Table_Id")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -64,9 +64,6 @@ namespace Persistence.Migrations
                     b.Property<bool>("IsBooked")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Person_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("QRCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -80,8 +77,6 @@ namespace Persistence.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Person_Id");
 
                     b.ToTable("Tables");
                 });
@@ -115,12 +110,7 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<int>("Table_Id")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("Table_Id");
 
                     b.ToTable("Persons");
                 });
@@ -129,39 +119,13 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Core.Entities.Person", "Person")
                         .WithMany()
-                        .HasForeignKey("Person_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Person_Id");
 
                     b.HasOne("Core.Entities.DaTable", "Table")
                         .WithMany()
-                        .HasForeignKey("Table_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Table_Id");
 
                     b.Navigation("Person");
-
-                    b.Navigation("Table");
-                });
-
-            modelBuilder.Entity("Core.Entities.DaTable", b =>
-                {
-                    b.HasOne("Core.Entities.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("Person_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
-                });
-
-            modelBuilder.Entity("Core.Entities.Person", b =>
-                {
-                    b.HasOne("Core.Entities.DaTable", "Table")
-                        .WithMany()
-                        .HasForeignKey("Table_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Table");
                 });
